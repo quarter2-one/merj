@@ -2,7 +2,10 @@
 
 ## Merge objects deeply! Do it!
 
-### Add/merge-if=exist object to a property
+### Add given property to provided object.
+
+If simple property exists, override it.
+If complex object, merge recursively.
 
 ```
 var o = {};
@@ -10,7 +13,7 @@ merj.mergeProperty(o, "prop", 88);
 // o.prop === 88
 ```
 
-Can copy a simple object.
+Can copy a simple object to named property.
 
 ```
 var o = {};
@@ -19,7 +22,7 @@ merj.mergeProperty(o, "simple", simpleObject);
 //o.simple.paint === 'tin'
 ```
 
-Can merge a complex object as property.
+Can copy a complex object to named property.
 
 ```
 
@@ -29,8 +32,8 @@ var complexObject = {
   hair: "brush",
   child: { paint: "tin", hair: "brush", child: { paint: "tin", hair: "brush", child: { paint: "lead", hair: "poisoning" } } },
 };
-merj.mergeProperty(o, "complex", complexObject);
-//o.prop.child.child.child.hair == complexObject.child.child.child.hair
+merj.mergeProperty(o, "complexProp", complexObject);
+//o.complexProp.child.child.child.hair == complexObject.child.child.child.hair
 
 ```
 
@@ -43,8 +46,9 @@ var complexObject = {
   child: { paint: "tin", hair: "brush", child: { paint: "tin", hair: "brush", child: { paint: "lead", hair: "poisoning" } } },
 };
 
-var o = { Brazilian: true };
+var o = { brazilian: true };
 merj.merge(o, complexObject);
+//o.brazilian === true
 //o.child.child.child.paint == "lead"
 //o.child.child.child.hair == "poisoning"
 ```
@@ -60,8 +64,7 @@ var complexObject = {
 
  var o = [];
 merj.merge(o, [complexObject, { gwara: true }]);
-assert(Array.isArray(o), "Was expecting an array.");
-assert(o[0].jacksThoughts.child.hair == "lost");
-assert(o[1].gwara);
-return true;
+//Array.isArray(o) === true
+//o[0].jacksThoughts.child.hair == "lost"
+//o[1].gwara === true;
 ```
