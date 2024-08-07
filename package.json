@@ -1,0 +1,21 @@
+{
+  "name": "merj",
+  "version": "1.0.0",
+  "description": "Deep merges one object/array into another.",
+  "main": "merj.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test"
+  },
+  "keywords": [
+    "merge",
+    "clone"
+  ],
+  "author": "Richard J. Glanvill <thedecimalspace@gmail.com> (thedecimal.space)",
+  "license": "ISC",
+  "devDependencies": {
+    "taste-test": "^0.1.1"
+  }
+}
